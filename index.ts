@@ -1,1 +1,1 @@
-export { Ragged } from "./ragged/class";
+export { RagState } from "./ragged/class";

@@ -1,4 +1,4 @@
-import { Ragged } from "./class";
+import { RagState } from "./class";
 import { getEmbeddings } from "./getEmbeddings";
 import { getMatchesFromEmbeddings } from "./getMatches";
 import { Pinecone } from "@pinecone-database/pinecone";
@@ -10,13 +10,13 @@ jest.mock("./getMatches");
 jest.mock("@pinecone-database/pinecone");
 jest.mock("openai-edge");
 
-describe("Ragged", () => {
- let ragged: Ragged;
+describe("RagState", () => {
+ let ragstate: RagState;
  let openAiKey = "test-openai-key";
  let pineconeKey = "test-pinecone-key";
 
  beforeEach(() => {
-  ragged = new Ragged(openAiKey, pineconeKey);
+  ragstate = new RagState(openAiKey, pineconeKey);
  });
 
  describe("getContext", () => {
@@ -35,7 +35,11 @@ describe("Ragged", () => {
    // @ts-ignore
    (getMatchesFromEmbeddings as jest.Mock).mockResolvedValue(matches);
 
-   const result = await ragged.getContext(message, pineconeIndex, minRelevance);
+   const result = await ragstate.getContext(
+    message,
+    pineconeIndex,
+    minRelevance
+   );
 
    expect(result).toEqual([{ score: 0.4, metadata: { text: "match1" } }]);
   });
@@ -49,10 +53,10 @@ describe("Ragged", () => {
   const minRelevance = 0.3;
 
   // @ts-ignore
-  jest.spyOn(ragged, "getContext").mockResolvedValue(null);
+  jest.spyOn(ragstate, "getContext").mockResolvedValue(null);
 
   await expect(
-   ragged.makeLlmRequest(
+   ragstate.makeLlmRequest(
     message,
     conversation,
     prompt,
@@ -81,7 +85,7 @@ describe("Ragged", () => {
    (getEmbeddings as jest.Mock).mockResolvedValue(embedding);
    (Pinecone as jest.Mock).mockImplementation(() => pinecone);
 
-   const result = await ragged.addContext(
+   const result = await ragstate.addContext(
     pineconeIndex,
     pineconeCloudRegion,
     context
@@ -101,7 +105,7 @@ describe("Ragged", () => {
    const pineconeCloudRegion = "us-east-1";
    const context: string[] = [];
 
-   const result = await ragged.addContext(
+   const result = await ragstate.addContext(
     pineconeIndex,
     pineconeCloudRegion,
     context

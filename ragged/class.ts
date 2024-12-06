@@ -4,7 +4,7 @@ import { Configuration, OpenAIApi } from "openai-edge";
 import { getMatchesFromEmbeddings } from "./getMatches";
 import { Message } from "ai";
 
-export class Ragged {
+export class RagState {
  private pineconeKey: string;
  private openAi: any;
 
