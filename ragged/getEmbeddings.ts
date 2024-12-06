@@ -1,5 +1,3 @@
-import { OpenAIApi, Configuration } from "openai-edge";
-
 export async function getEmbeddings(input: string, openai) {
  try {
   const response = await openai.createEmbedding({

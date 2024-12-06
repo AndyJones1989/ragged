@@ -83,8 +83,6 @@ export class Ragged {
 
    const json = await response.json();
 
-   console.log(json.choices[0].message);
-
    return json.choices[0].message.content;
   } catch (e) {
    throw e;

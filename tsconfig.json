@@ -6,6 +6,6 @@
   "moduleResolution": "node",
   "sourceMap": true,
   "outDir": "dist",
-  "lib": ["es2020", "dom"]
+  "lib": ["es2022", "dom"]
  }
 }
