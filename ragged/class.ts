@@ -5,12 +5,10 @@ import { getMatchesFromEmbeddings } from "./getMatches";
 import { Message } from "ai";
 
 export class Ragged {
- private openAiKey: string;
  private pineconeKey: string;
  private openAi: any;
 
  constructor(openAiKey: string, pineconeKey: string) {
-  this.openAiKey = openAiKey;
   this.pineconeKey = pineconeKey;
   const config = new Configuration({
    apiKey: openAiKey,
@@ -35,7 +33,6 @@ export class Ragged {
   const selectedRecords = matches.filter(
    (m) => m.score && m.score > minRelevance
   );
-
   return selectedRecords;
  }
 
@@ -76,16 +73,19 @@ export class Ragged {
    // Ask OpenAI for a streaming chat completion given the prompt
    const response = await this.openAi.createChatCompletion({
     model: "gpt-3.5-turbo",
-    stream: true,
+    stream: false,
     messages: [
      ...structuredPrompt,
      ...conversation.filter((message: Message) => message.role === "user"),
+     { role: "user", content: message },
     ],
    });
 
-   console.log(response);
-   //    // Respond with the stream
-   //    return new StreamingTextResponse(stream);
+   const json = await response.json();
+
+   console.log(json.choices[0].message);
+
+   return json.choices[0].message.content;
   } catch (e) {
    throw e;
   }
