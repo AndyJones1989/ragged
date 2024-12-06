@@ -1,9 +1,11 @@
 {
  "name": "ragged",
  "version": "1.0.0",
- "description": "A utility packaged for generating contextually supported llm calls",
- "main": "index.js",
+ "types": "dist/index.d.ts",
+ "description": "A utility package for generating contextually supported LLM calls",
+ "main": "dist/index.js",
  "scripts": {
+  "build": "tsc",
   "test": "jest"
  },
  "author": "Andy J",
@@ -19,5 +21,11 @@
   "@pinecone-database/pinecone": "^4.0.0",
   "ai": "^4.0.13",
   "openai-edge": "^1.2.2"
+ },
+ "exports": {
+  ".": {
+   "import": "./dist/index.js",
+   "require": "./dist/index.js"
+  }
  }
 }

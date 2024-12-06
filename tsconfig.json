@@ -6,6 +6,9 @@
   "moduleResolution": "node",
   "sourceMap": true,
   "outDir": "dist",
+  "declaration": true,
   "lib": ["es2022", "dom"]
- }
+ },
+ "include": ["**/*"],
+ "exclude": ["node_modules", "dist", "**/*.spec.ts"]
 }

@@ -98,7 +98,7 @@ export class Ragged {
    return { success: false, message: "whoops, no context found!" };
   }
   try {
-   const pinecone = new Pinecone();
+   const pinecone = new Pinecone({ apiKey: this.pineconeKey });
 
    // Create index if it isn't found
    const indexList: string[] =
