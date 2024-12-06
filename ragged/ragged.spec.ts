@@ -48,6 +48,7 @@ describe("Ragged", () => {
   const pineconeIndex = "test-index";
   const minRelevance = 0.3;
 
+  // @ts-ignore
   jest.spyOn(ragged, "getContext").mockResolvedValue(null);
 
   await expect(
