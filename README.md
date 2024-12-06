@@ -2,7 +2,11 @@
 
 ## Intro
 
-Hey! RagState is a super-simple abstraction for hooking up a vector database to an LLM so you can harness the power of LLMs with your own data. Building a chatbot for a restaurant, garage, or maybe even a vehicle rental company? RagState makes it simple by exposing 2 fundamental methods:
+Hey! RagState is a super-simple abstraction for hooking up a vector database to an LLM so you can harness the power of LLMs with your own data. Building a chatbot for a restaurant, garage, or maybe even a vehicle rental company? RagState makes it simple by exposing 2 fundamental methods.
+
+BEFORE READING ON:
+
+You're going to need an openAi account with sufficient funding to make api calls (don't worry, it's no more expensive than your usual openAi calls), and a pinecone account.
 
 ## Quick-start
 
