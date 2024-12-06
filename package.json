@@ -1,0 +1,19 @@
+{
+  "name": "ragged",
+  "version": "1.0.0",
+  "description": "A utility packaged for generating contextually supported llm calls",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andy J",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "@pinecone-database/pinecone": "^4.0.0",
+    "ai": "^4.0.13",
+    "openai-edge": "^1.2.2"
+  }
+}
