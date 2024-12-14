@@ -4,6 +4,8 @@ import { Configuration, OpenAIApi } from "openai-edge";
 import { getMatchesFromEmbeddings } from "./getMatches";
 import { Message } from "ai";
 
+type Model = "gpt-3.5-turbo" | "gpt-4o" | "gpt-4o-mini";
+
 export class RagState {
  private pineconeKey: string;
  private openAi: any;
@@ -41,7 +43,8 @@ export class RagState {
   conversation: Message[],
   prompt: string,
   pineconeIndex: string,
-  minRelevance: number
+  minRelevance: number,
+  model: Model = "gpt-3.5-turbo"
  ) {
   try {
    const context = await this.getContext(message, pineconeIndex, minRelevance);
@@ -72,7 +75,7 @@ export class RagState {
 
    // Ask OpenAI for a streaming chat completion given the prompt
    const response = await this.openAi.createChatCompletion({
-    model: "gpt-3.5-turbo",
+    model: model,
     stream: false,
     messages: [
      ...structuredPrompt,
