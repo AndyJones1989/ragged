@@ -1,6 +1,6 @@
 {
  "name": "ragstate",
- "version": "1.0.3",
+ "version": "1.0.5",
  "types": "dist/index.d.ts",
  "description": "A utility package for generating contextually supported LLM calls",
  "main": "dist/index.js",
