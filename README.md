@@ -6,50 +6,50 @@ Hey! RagState is a super-simple abstraction for hooking up a vector database to 
 
 BEFORE READING ON:
 
-You're going to need an openAi account with sufficient funding to make api calls (don't worry, it's no more expensive than your usual openAi calls), and a (pinecone account)[https://www.pinecone.io/?utm_term=pinecone%20database&utm_campaign=brand-eu&utm_source=adwords&utm_medium=ppc&hsa_acc=3111363649&hsa_cam=21023356007&hsa_grp=156209469342&hsa_ad=690982079000&hsa_src=g&hsa_tgt=kwd-1627713670725&hsa_kw=pinecone%20database&hsa_mt=e&hsa_net=adwords&hsa_ver=3&gad_source=1&gclid=CjwKCAiA9vS6BhA9EiwAJpnXw_Qwb4N6pJw9QTMTpHXncqQPoj_zkgcGzzoT5hLm_T6qJpjcIiC_DxoCrDIQAvD_BwE].
+You're going to need an openAi account with sufficient funding to make api calls (don't worry, it's no more expensive than your usual openAi calls), and a [pinecone account](https://www.pinecone.io/?utm_term=pinecone%20database&utm_campaign=brand-eu&utm_source=adwords&utm_medium=ppc&hsa_acc=3111363649&hsa_cam=21023356007&hsa_grp=156209469342&hsa_ad=690982079000&hsa_src=g&hsa_tgt=kwd-1627713670725&hsa_kw=pinecone%20database&hsa_mt=e&hsa_net=adwords&hsa_ver=3&gad_source=1&gclid=CjwKCAiA9vS6BhA9EiwAJpnXw_Qwb4N6pJw9QTMTpHXncqQPoj_zkgcGzzoT5hLm_T6qJpjcIiC_DxoCrDIQAvD_BwE).
 
 ## Quick-start
 
 To get started, import ragstate and instatiate it:
 
-`import { RagState } from "ragstate";
+`import { RagState } from "ragstate";`
 
-const openaiToken = 'abc123';
-const pineconeKey = '123abc';
+`const openaiToken = 'abc123';`
+`const pineconeKey = '123abc';`
 
-const ragState = new RagState(openaiToken, pineconeKey);
+`const ragState = new RagState(openaiToken, pineconeKey);`
 
-const response = await ragState.addContext("fun-facts", "us-east-1", [
+`const response = await ragState.addContext("fun-facts", "us-east-1", [
 "RagState is a really simple way to build context enabled chat agents!",
-]);
+]);`
 
-console.log(response);`
+`console.log(response);`
 
 once you've done that you can make your first call to the LLM:
 
-`const output = await ragState.makeLlmRequest(
+`const output = await ragState.makeLlmRequest(`
 
-"tell me something cool about RagState", // current question
+`"tell me something cool about RagState", // current question`
 
-[
+`[`
 
-{
+`{
 id: "1",
 role: "user",
 content: "hello llm!",
-},
-], // conversation history
+},`
+`], // conversation history`
 
-"", // the system prompt you wish to add (we add our own by default if omitted)
+`"", // the system prompt you wish to add (we add our own by default if omitted)`
 
-"my-index", // your pinecone index
+`"my-index", // your pinecone index`
 
-0.1 // min relevance
+`0.1 // min relevance`
 
-"gpt-3.5-turbo" // your chosen llm
-);
+`"gpt-3.5-turbo" // your chosen llm`
+`);`
 
-console.log(output);`
+`console.log(output);`
 
 ## addContext
 
@@ -85,3 +85,4 @@ For more advanced users we've also exposed a getContext method, this will return
 
 v1.0.4: first public release  
 v1.0.5: added support for model selection
+v1.0.6: README improvements
