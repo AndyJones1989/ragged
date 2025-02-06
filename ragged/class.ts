@@ -29,7 +29,7 @@ export class RagState {
    this.pineconeKey,
    pineconeIndex,
    embedding,
-   3
+   20
   );
 
   const selectedRecords = matches.filter(
